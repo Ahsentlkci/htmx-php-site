@@ -1,18 +1,15 @@
 <?php
-// ==============================================================================
 // 1. BACKEND (PHP): İstekleri Yakalama ve Yanıtlama (Sayfa yenilenmez!)
-// ==============================================================================
 
 // [GET İSTEĞİ]: Butona tıklandığında URL'e "?saat=1" eklenerek burası tetiklenir
 if (isset($_GET['saat'])) {
-    echo "⏰ Sunucu Saati: " . date("H:i:s"); // Dönen veri doğrudan hx-target ile seçilen alana basılır
-    exit; // Sadece bu metni dönüp PHP çalışmasını bitiriyoruz
+    echo "⏰ Sunucu Saati: " . date("H:i:s"); 
+    exit; 
 }
 
 // [POST İSTEĞİ]: Form gönderildiğinde $_POST['mesaj'] verisi ile burası tetiklenir
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mesaj'])) {
     $mesaj = htmlspecialchars($_POST['mesaj']);
-    // Dönen HTML parçası, listenin en başına (afterbegin) anında eklenir
     echo "<li>✅ " . $mesaj . " <small style='color:#718096'>(" . date("H:i") . ")</small></li>";
     exit;
 }
